@@ -7,8 +7,6 @@
   <title>Kodeloftet</title>
   <link rel="stylesheet" href="styles.css">
 
-  <script src="script.js"></script>
-
   <!-- Highlightjs imports -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -17,14 +15,41 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
 
   <script>hljs.highlightAll();</script>
+
+  <!-- Vår egene JavaScript -->
+  <script defer src="script.js"></script>
+  <script>
+    function handleClick2() {
+      console.log("Clicked Button 2")
+    }
+  </script>
 </head>
 
 <body>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="carusel.html">Carusel</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
   <pre><code class="language-javascript">
     const a = 10
     const b = 20
     const c = a + b
   </code></pre>
+
+  <section>
+    <div id="counter-display">0</div>
+    <button id="test-button">Click Me! #1</button>
+    <button onclick="handleClick2()">Click Me! #2</button>
+  </section>
 </body>
 
 </html>

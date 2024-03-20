@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carusel</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+            margin: 0
+        }
+
+        .mySlides {
+            display: none
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        dotElementshe dots/bullets/indicators dotElements .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+
+            .prev,
+            .next,
+            .text {
+                font-size: 11px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="carusel.html">Carusel</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 5</div>
+            <img src="assets/flowers.jpg" style="width:100%">
+            <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 5</div>
+            <img src="assets/mountains.jpg" style="width:100%">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 5</div>
+            <img src="assets/tortoise.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 5</div>
+            <img src="assets/tortoise.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">5 / 5</div>
+            <img src="assets/tortoise.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+        <a class="prev" onclick="moveSlides(-1)">❮</a>
+        <a class="next" onclick="moveSlides(1)">❯</a>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot" onclick="setCurrentSlide(1)">*</span>
+        <span class="dot" onclick="setCurrentSlide(2)">*</span>
+        <span class="dot" onclick="setCurrentSlide(3)">*</span>
+        <span class="dot" onclick="setCurrentSlide(4)">*</span>
+        <span class="dot" onclick="setCurrentSlide(5)">*</span>
+    </div>
+
+    <script>
+        // Lagrer indeksen til bildet vi er på nå
+        let currentImage = 1;
+        showSlides(currentImage);
+
+        // Funskjon for å bytte til et nytt bilde
+        function moveSlides(numberOfSlides) {
+            showSlides(currentImage += numberOfSlides);
+        }
+
+        // Bytt til et eksakt bilde
+        function setCurrentSlide(slideIndex) {
+            showSlides(currentImage = slideIndex);
+        }
+
+        function showSlides(slideNumber) {
+            // Dette er slide elementenen
+            let slideElements = document.getElementsByClassName("mySlides");
+            // Dette er dot elementene
+            let dotElements = document.getElementsByClassName("dot");
+
+            // Sørger for at vi starter på nytte eller fortsetter med slutten
+            if (slideNumber > slideElements.length) {
+                currentImage = 1
+            }
+            if (slideNumber < 1) {
+                currentImage = slideElements.length
+            }
+
+            // Gå igjennom alle slide elementene og sett CSS til 'display: none'
+            for (i = 0; i < slideElements.length; i++) {
+                slideElements[i].style.display = "none";
+            }
+            // Gå igjennom alle dot elementene og fjern aktiv status
+            for (i = 0; i < dotElements.length; i++) {
+                dotElements[i].classList.remove("active")
+            }
+
+            // Sett det nåværende bilde til å vises (overskrive der vi gjemte de)
+            slideElements[currentImage - 1].style.display = "block";
+            // Sett det nåværende markøren til å ha den aktive stylingen
+            dotElements[currentImage - 1].classList.add("active")
+        }
+    </script>
+
+</body>
+
+</html>
